@@ -1,0 +1,24 @@
+{
+  "name": "website-creator",
+  "version": "1.0.0",
+  "description": "Generates a static html website from a json datasource",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lwvb/website-creator.git"
+  },
+  "keywords": [
+    "Static",
+    "json",
+    "generator"
+  ],
+  "author": "LW van Beelen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lwvb/website-creator/issues"
+  },
+  "homepage": "https://github.com/lwvb/website-creator#readme"
+}
