@@ -3,6 +3,9 @@
 
 const program = require('commander');
 const fs = require("fs");
+const Reader = require("./reader");
+const Parser = require("./parser");
+const Writer = require("./writer");
 
 program
   .version('0.0.1')
@@ -15,29 +18,22 @@ var sourcedir = program.sourcedir || './src';
 var outputdir = program.outputdir || './dist';
 console.log('Transformm from %s to %s', sourcedir, outputdir);
 
-var readJsonFile = (filepath, succesCallback) => {
-  fs.readFile(filepath, 'utf8',  (error, data) => {
-    if (error) {
-      throw error;
-    } else {
-      var jsonContent = JSON.parse(data);
-      succesCallback(jsonContent);
-    }
-  });
-}
 
-var writeHtmlFile = (filepath, content, succesCallback) => {
-  fs.writeFile(filepath, content, (error) => {
-    if (error) {
-      throw error;
-    } else {
-      succesCallback();
-    }
-  });
-}
+var reader = new Reader();
+var parser = new Parser();
+var writer = new Writer();
 
-readJsonFile(sourcedir+'/test.json', (data) => {
-  console.log("title:", data.title);
-  writeHtmlFile(outputdir+'/test.html', '<html><head><title>'+data.title+'</title></head><body><h1>'+data.title+'</h1></body></html>', () => {})
+reader.on('ready', (data) => {
+  parser.parse(data);
+});
+
+parser.on('ready', (data) => {
+  writer.write(outputdir+'/test.html', data)
 })
+
+writer.on('ready', () => {
+  console.log('ready');
+})
+
+reader.readJsonFile(sourcedir+'/test.json');
 
