@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/lwvb/website-creator#readme",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "handlebars": "^4.0.6"
   }
 }
