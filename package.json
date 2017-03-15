@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/lwvb/website-creator/issues"
   },
-  "homepage": "https://github.com/lwvb/website-creator#readme"
+  "homepage": "https://github.com/lwvb/website-creator#readme",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
 }
