@@ -17,6 +17,9 @@
   ],
   "author": "LW van Beelen",
   "license": "ISC",
+  "bin": {
+    "website-creator": "./index.js"
+  },
   "bugs": {
     "url": "https://github.com/lwvb/website-creator/issues"
   },
