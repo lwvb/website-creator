@@ -1,5 +1,8 @@
 {
+    "id":  "7b62d6a7-70f9-4ab5-8f99-0c74daf60fd7",
+    "type": "post",
     "title": "Een goed begin",
+    "image": "https://www.leendertvanbeelen.nl/09/een-goed-begin/start.jpg",
     "date": "2016-09-09",
     "content": [
         {
@@ -9,9 +12,11 @@
             "images": [
                 {
                     "title": "Station Frankfurt",
+                    "url": "https://www.leendertvanbeelen.nl/09/een-goed-begin/station-frankfurt.jpg"
                 },
                 {
                     "title": "Unterseen",
+                    "url": "https://www.leendertvanbeelen.nl/09/een-goed-begin/unterseen.jpg"
                 }
             ]
         },
@@ -28,12 +33,15 @@
             "images": [
                 {
                     "title": "Station Wilderswil",
+                    "url": "https://www.leendertvanbeelen.nl/09/een-goed-begin/station-wilderswil.jpg"
                 },
                 {
                     "title": "Trein met koeien",
+                    "url": "https://www.leendertvanbeelen.nl/09/een-goed-begin/trein-met-koeien.jpg"
                 },
                 {
                     "title": "Bergen",
+                    "url": "https://www.leendertvanbeelen.nl/09/een-goed-begin/bergen.jpg"
                 }
             ]
         },
@@ -41,12 +49,13 @@
             "text": " Na alle inspanningen gisteren heb ik vandaag wat rustiger aan gedaan. Eerst even een paar duizend mensen aan een marathon zien beginnen. Het verbaasde me dat sommige het na de tweede bocht waar ik stond het al moeilijk hadden, die hebben de finish waarschijnlijk niet gehaald. Ik ben vervolgens de andere kant op gewandeld naar de ruïne Weissenau. Dat was niet zo heel ver, vanmiddag lekker gekookt en rustig zitten eten. Daarna wat uurtjes bezig geweest om deze blog online te krijgen. Als je dit nu leest is dat dus gelukt. "
         },
         {
-            "text": " Mijne engelse skills gaan met de dag omhoog. Het was zeker de eerste dag best pittig om me niet in het Nederlands te kunnen uitdrukken. Gelukkig werd dat meteen ook weer gecompenseerd doordat de eerste kamer genoot een Nederlandssprekende Belg bleek te zijn. Inmiddels ook al conversaties gevoerd in het engels, nog niet helemaal vloeiend maar dat komt vast wel goed. Om af te sluiten nog een mooi plaatje. "
+            "text": " Mijn engelse skills gaan met de dag omhoog. Het was zeker de eerste dag best pittig om me niet in het Nederlands te kunnen uitdrukken. Gelukkig werd dat meteen ook weer gecompenseerd doordat de eerste kamer genoot een Nederlandssprekende Belg bleek te zijn. Inmiddels ook al conversaties gevoerd in het engels, nog niet helemaal vloeiend maar dat komt vast wel goed. Om af te sluiten nog een mooi plaatje. "
         },
         {
             "images": [
                 {
                     "title": "Panorama station Schynige Platte",
+                    "url": "https://www.leendertvanbeelen.nl/09/een-goed-begin/panorama-station-schynige-platte.jpg"
                 }
             ]
         }
