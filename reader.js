@@ -8,13 +8,13 @@ class Reader extends EventEmitter {
 
   readJsonFile(filepath){
     fs.readFile(filepath, 'utf8',  (error, data) => {
-    if (error) {
-      this.emit('error', error);
-    } else {
-      var jsonContent = JSON.parse(data);
-      this.emit('ready', jsonContent);
-    }
-  });
+      if (error) {
+        this.emit('error', error);
+      } else {
+        var jsonContent = JSON.parse(data);
+        this.emit('ready', jsonContent);
+      }
+    });
   }
 
 }
