@@ -2,12 +2,14 @@ const EventEmitter = require('events');
 const fs = require("fs");
 
 class Reader extends EventEmitter {
-  constructor() {
-    super(); //must call super for "this" to be defined.
+  constructor(filename) {
+    super();
+    this.filename = filename;
+    this.write = this.write.bind(this);
   }
 
-  write(filepath, content) {
-    fs.writeFile(filepath, content, (error) => {
+  write(content) {
+    fs.writeFile(this.filename, content, (error) => {
       if (error) {
         this.emit('error', error);
       } else {

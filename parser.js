@@ -1,12 +1,27 @@
 const EventEmitter = require('events');
+const fs = require("fs");
+const handlebars = require("handlebars");
 
 class Parser extends EventEmitter {
   constructor() {
-    super(); //must call super for "this" to be defined.
+    super();
+    this.parse = this.parse.bind(this);
+  }
+
+  init() {
+    fs.readFile('./resources/template.html', 'utf-8', (error, data) => {
+      if(error) {
+        this.emit('error', error);
+      } else {
+        this.template = handlebars.compile(data);
+        this.emit('initReady');
+      }
+    });
   }
 
   parse(data) {
-    var html = '<html><head><title>'+data.title+'</title></head><body><h1>'+data.title+'</h1><p>'+data.content+'</body></html>';
+    var template = this.template;
+    var html = template(data);
     this.emit('ready', html);
   }
 

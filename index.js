@@ -14,26 +14,26 @@ program
   .action()
   .parse(process.argv); // end with parse to parse through the input
 
-var sourcedir = program.sourcedir || './src';
+var sourcedir = program.sourcedir || './resources';
 var outputdir = program.outputdir || './dist';
 console.log('Transformm from %s to %s', sourcedir, outputdir);
 
 
+
 var reader = new Reader();
 var parser = new Parser();
-var writer = new Writer();
-
-reader.on('ready', (data) => {
-  parser.parse(data);
-});
-
-parser.on('ready', (data) => {
-  writer.write(outputdir+'/test.html', data)
-})
-
+var writer = new Writer(outputdir+'/test.html');
+var startReading = function() {
+  reader.readJsonFile(sourcedir+'/test.json');
+}
+reader.on('ready', parser.parse);
+parser.on('ready', writer.write);
 writer.on('ready', () => {
   console.log('ready');
 })
 
-reader.readJsonFile(sourcedir+'/test.json');
+
+parser.on('initReady', startReading);
+parser.init();
+
 
