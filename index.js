@@ -14,21 +14,20 @@ program
   .action()
   .parse(process.argv); // end with parse to parse through the input
 
-var outputdir = program.outputdir || './dist';
 var sourcedir = program.sourcedir || './resources/data/';
+var outputdir = program.outputdir || './dist/';
 console.log('Transformm from %s to %s', sourcedir, outputdir);
 
 
 
 var reader = new Reader();
 var parser = new Parser();
-var writer = new Writer(outputdir+'/test.html');
+var writer = new Writer(outputdir);
 reader.on('ready', parser.parse);
 parser.on('ready', writer.write);
 writer.on('ready', () => {
   console.log('ready');
-})
-
+});
 
 reader.readDir(sourcedir);
 
