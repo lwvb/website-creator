@@ -14,8 +14,8 @@ program
   .action()
   .parse(process.argv); // end with parse to parse through the input
 
-var sourcedir = program.sourcedir || './resources';
 var outputdir = program.outputdir || './dist';
+var sourcedir = program.sourcedir || './resources/data/';
 console.log('Transformm from %s to %s', sourcedir, outputdir);
 
 
@@ -23,9 +23,6 @@ console.log('Transformm from %s to %s', sourcedir, outputdir);
 var reader = new Reader();
 var parser = new Parser();
 var writer = new Writer(outputdir+'/test.html');
-var startReading = function() {
-  reader.readJsonFile(sourcedir+'/test.json');
-}
 reader.on('ready', parser.parse);
 parser.on('ready', writer.write);
 writer.on('ready', () => {
@@ -33,7 +30,6 @@ writer.on('ready', () => {
 })
 
 
-parser.on('initReady', startReading);
-parser.init();
+reader.readDir(sourcedir);
 
 
