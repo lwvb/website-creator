@@ -26,6 +26,7 @@
   "homepage": "https://github.com/lwvb/website-creator#readme",
   "dependencies": {
     "commander": "^2.9.0",
-    "handlebars": "^4.0.6"
+    "handlebars": "^4.0.6",
+    "slug": "^0.9.1"
   }
 }

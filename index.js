@@ -15,14 +15,16 @@ program
   .parse(process.argv); // end with parse to parse through the input
 
 var sourcedir = program.sourcedir || './resources/data/';
+var templatedir = './resources/templates/';
 var outputdir = program.outputdir || './dist/';
 console.log('Transformm from %s to %s', sourcedir, outputdir);
 
 
 
 var reader = new Reader();
-var parser = new Parser();
+var parser = new Parser(templatedir);
 var writer = new Writer(outputdir);
+
 reader.on('ready', parser.parse);
 parser.on('ready', writer.write);
 writer.on('ready', () => {
