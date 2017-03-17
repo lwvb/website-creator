@@ -25,10 +25,10 @@ var reader = new Reader();
 var parser = new Parser(templatedir);
 var writer = new Writer(outputdir);
 
-reader.on('ready', parser.parse);
-parser.on('ready', writer.write);
+reader.on('newPost', parser.parsePost);
+parser.on('newContent', writer.write);
 writer.on('ready', () => {
-  console.log('ready');
+  console.log('File saved to disk: ');
 });
 
 reader.readDir(sourcedir);

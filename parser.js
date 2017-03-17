@@ -9,9 +9,10 @@ class Parser extends EventEmitter {
     this.templatedir = templatedir;
     this.templates = {};
     this.queue = [];
-    this.parse = this.parse.bind(this);
+    this.list = [];
+    this.parsePost = this.parsePost.bind(this);
     this.on("templateLoaded", this.parseNext)
-    this.on("ready", this.parseNext)
+    this.on("newContent", this.parseNext)
   }
 
   loadTemplate(name) {
@@ -25,21 +26,34 @@ class Parser extends EventEmitter {
     });
   }
 
-  parse(data) {
+  parsePost(data) {
+    data.type = "post";
     this.queue.push(data);
+    this.addToList(data);
     this.parseNext();
+    
+  }
+
+  addToList(data) {
+    this.list.push({ id: data.id, title: data.title, image: data.image, data: data.date});
+    this.queue.push({
+      type: "list",
+      title: "list",
+      items: this.list
+    });
+
   }
 
   parseNext() {
     if(this.queue.length > 0) {
       var data = this.queue.pop();
       if(!this.templates[data.type]) {
-        this.loadTemplate(data.type);
         this.queue.push(data);
+        this.loadTemplate(data.type);
       } else {
         var html = this.templates[data.type](data);
         var filename = slug(data.title, {lower: true})+'.html';
-        this.emit('ready', filename, html);
+        this.emit('newContent', filename, html);
       }
     }
   }

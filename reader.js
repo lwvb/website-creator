@@ -21,7 +21,7 @@ class Reader extends EventEmitter {
   }
 
   readFileList(files, path){
-    var jsonfiles = files.filter(this.isJsonFile)
+    var jsonfiles = files.filter(this.isJsonFile);
     jsonfiles.forEach(file => {
       this.readJsonFile(path + file);
     });
@@ -33,7 +33,7 @@ class Reader extends EventEmitter {
         this.emit('error', error);
       } else {
         var jsonContent = JSON.parse(data);
-        this.emit('ready', jsonContent);
+        this.emit('newPost', jsonContent);
       }
     });
   }
