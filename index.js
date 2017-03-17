@@ -26,9 +26,9 @@ var parser = new Parser(templatedir);
 var writer = new Writer(outputdir);
 
 reader.on('newPost', parser.parsePost);
-parser.on('newContent', writer.write);
-writer.on('ready', () => {
-  console.log('File saved to disk: ');
+parser.on('htmlReady', writer.write);
+writer.on('fileSaved', (filename) => {
+  console.log('File saved to disk: ' + filename);
 });
 
 reader.readDir(sourcedir);

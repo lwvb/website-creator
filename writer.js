@@ -13,7 +13,7 @@ class Reader extends EventEmitter {
       if (error) {
         this.emit('error', error);
       } else {
-        this.emit('ready');
+        this.emit('fileSaved', filename);
       }
     });
   }

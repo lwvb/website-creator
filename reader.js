@@ -3,7 +3,8 @@ const fs = require("fs");
 
 class Reader extends EventEmitter {
   constructor() {
-    super(); //must call super for "this" to be defined.
+    super();
+    this.readDir = this.readDir.bind(this);
   }
 
   readDir(path) {
@@ -11,23 +12,23 @@ class Reader extends EventEmitter {
       if (error) {
         this.emit('error', error);
       } else {
-        this.readFileList(files, path);
+        this._readFileList(files, path);
       }
     })
   }
 
-  isJsonFile(filename) {
+  _isJsonFile(filename) {
     return filename.endsWith(".json");
   }
 
-  readFileList(files, path){
-    var jsonfiles = files.filter(this.isJsonFile);
+  _readFileList(files, path){
+    var jsonfiles = files.filter(this._isJsonFile);
     jsonfiles.forEach(file => {
-      this.readJsonFile(path + file);
+      this._readJsonFile(path + file);
     });
   }
 
-  readJsonFile(filepath){
+  _readJsonFile(filepath){
     fs.readFile(filepath, 'utf8',  (error, data) => {
       if (error) {
         this.emit('error', error);
