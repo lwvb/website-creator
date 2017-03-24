@@ -4,9 +4,13 @@ const handlebars = require("handlebars");
 const slug = require('slug')
 
 class Parser extends EventEmitter {
-  constructor(templatedir) {
+  constructor(path) {
     super();
-    this.templatedir = templatedir;
+    if(!fs.existsSync(path)) {
+      throw new Error("Invalid path, unable to read templates");
+    }
+    this._templatedir = path;
+
     this._templates = {};
     this._queue = [];
     this._list = [];
@@ -24,7 +28,7 @@ class Parser extends EventEmitter {
   }
 
   _loadTemplate(name) {
-    fs.readFile(this.templatedir+name+".html", 'utf-8', (error, data) => {
+    fs.readFile(this._templatedir+name+".html", 'utf-8', (error, data) => {
       if(error) {
         this.emit('error', error);
       } else {

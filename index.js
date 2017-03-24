@@ -11,17 +11,18 @@ program
   .version('0.0.1')
   .option('-d, --sourcedir <required>','Directory with source files')
   .option('-o, --outputdir <required>','Where the output is stored (default to "dist")')
+  .option('-w, --watch', 'Watch to input for changes')
   .action()
   .parse(process.argv); // end with parse to parse through the input
 
-var sourcedir = program.sourcedir || './resources/data/';
-var templatedir = './resources/templates/';
+var sourcedir = program.sourcedir || './data/';
+var templatedir = './template/';
 var outputdir = program.outputdir || './dist/';
 console.log('Transformm from %s to %s', sourcedir, outputdir);
 
 
 
-var reader = new Reader();
+var reader = new Reader(sourcedir);
 var parser = new Parser(templatedir);
 var writer = new Writer(outputdir);
 
@@ -31,6 +32,10 @@ writer.on('fileSaved', (filename) => {
   console.log('File saved to disk: ' + filename);
 });
 
-reader.readDir(sourcedir);
+
+reader.read();
+if(program.watch) {
+  reader.watch()
+}
 
 
