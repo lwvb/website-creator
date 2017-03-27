@@ -26,6 +26,7 @@ class Parser extends EventEmitter {
 
   parsePost(data) {
     data.type = "post";
+    data.slug = slug(data.title, {lower: true});
     this._queue.push(data);
     this._addToList(data);
     this._parseNext();
@@ -33,12 +34,13 @@ class Parser extends EventEmitter {
 
 
   _addToList(data) {
-    let listData = { id: data.id, title: data.title, image: data.image, data: data.date};
+    let listData = { id: data.id, title: data.title, slug: data.slug, image: data.image, data: data.date};
     this._list.push(listData);
     this._queue.push({
       type: "home",
-      title: "index",
-      items: this._list
+      title: "homepage",
+      slug: "index",
+      items: this._list.reverse()
     });
 
     data.tags.forEach(tag => {
@@ -58,7 +60,7 @@ class Parser extends EventEmitter {
         this._handlebars.loadTemplate(data.type);
       } else {
         var html = this._handlebars.parse(data);
-        var filename = slug(data.title, {lower: true})+'.html';
+        var filename = data.slug+'.html';
         this.emit('htmlReady', filename, html);
       }
     }
